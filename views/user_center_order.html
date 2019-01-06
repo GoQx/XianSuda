@@ -1,0 +1,54 @@
+
+
+	<div class="main_con clearfix">
+		<div class="left_menu_con clearfix">
+			<h3>用户中心</h3>
+			<ul>
+				<li><a href="/goods/UserCenterInfo">· 个人信息</a></li>
+				<li><a href="/goods/UserCenterOrder" class="active">· 全部订单</a></li>
+				<li><a href="/goods/UserCenterSite">· 收货地址</a></li>
+			</ul>
+		</div>
+		<div class="right_content clearfix">
+				<h3 class="common_title2">全部订单</h3>
+
+		{{range .orders}}
+            <ul class="order_list_th w978 clearfix">
+                <li class="col01">{{.order.Time}}</li>
+                <li class="col02">订单号：{{.order.OrderId}}</li>
+                <li class="col02 stress">{{if compare .order.Orderstatus 0}}未支付{{else}}已支付{{end}}</li>
+            </ul>
+
+            <table class="order_list_table w980">
+                <tbody>
+                <tr>
+                    <td width="55%">
+					{{range .goods}}
+                        <ul class="order_goods_list clearfix">
+                            <li class="col01"><img src="http://172.17.237.103:8888/{{.GoodsSKU.Image}}"></li>
+                            <li class="col02">{{.GoodsSKU.Name}}<em>{{.GoodsSKU.Price}}元/{{.GoodsSKU.Unite}}</em></li>
+                            <li class="col03">{{.Count}}</li>
+                            <li class="col04">{{.Price}}元</li>
+                        </ul>
+					{{end}}
+                    </td>
+                    <td width="15%">{{.order.TotalPrice}}元</td>
+                    <td width="15%">{{if compare .order.Orderstatus 0}}未付款{{else}}已付款{{end}}</td>
+                    <td width="15%">{{if compare .order.Orderstatus 0}}<a href="/goods/PayAli" class="oper_btn">去付款</a>{{else}}<a href="#" class="oper_btn">查看物流</a>{{end}}</td>
+                </tr>
+                </tbody>
+            </table>
+		{{end}}
+				<div class="pagenation">
+					<a href="#">上一页</a>
+					<a href="#" class="active">1</a>
+					<a href="#">2</a>
+					<a href="#">3</a>
+					<a href="#">4</a>
+					<a href="#">5</a>
+					<a href="#">下一页></a>
+				</div>
+		</div>
+	</div>
+
+
